@@ -60,7 +60,7 @@ export default function About() {
             Meet the Founder
           </h3>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            Founded by a certified clinical psychologist with a vision to make mental health support universally accessible, CogNivia blends compassion with science. We are committed to transforming lives through personalized care and global outreach.
+            Founded by a certified clinical psychologist <strong className="text-gray-800">Dr. Nitesh Mishra</strong> with a vision to make mental health support universally accessible, CogNivia blends compassion with science. We are committed to transforming lives through personalized care and global outreach.
           </p>
           <div className="space-y-2 text-muted-foreground">
             <p><strong>Our Mission:</strong> To empower individuals to navigate life’s challenges through accessible, culturally competent therapy.</p>
