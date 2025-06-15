@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Container } from "@/components/ui/container";
+// import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { Sparkles } from "lucide-react";
 
