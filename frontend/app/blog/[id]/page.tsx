@@ -2,19 +2,20 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { dummyBlogs } from "@/components/blog/blog-data";
 
-interface BlogParams {
+type Props = {
   params: {
     id: string;
   };
-}
+};
 
+// Optional: for static generation (if using app router properly)
 export async function generateStaticParams() {
   return dummyBlogs.map((blog) => ({
     id: blog.id,
   }));
 }
 
-export default function BlogDetailPage({ params }: BlogParams) {
+export default function BlogDetailPage({ params }: Props) {
   const blog = dummyBlogs.find((b) => b.id === params.id);
 
   if (!blog) return notFound();
