@@ -1,30 +1,23 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { dummyBlogs } from "@/components/blog/blog-data";
-import { Metadata } from "next";
 
-type Props = {
-  params: { id: string };
-};
-
-// Optional: SEO metadata
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const blog = dummyBlogs.find((b) => b.id === params.id);
-  return {
-    title: blog?.title || "Blog Not Found",
-    description: blog?.summary || "Read blogs on mental health & wellness.",
+interface BlogParams {
+  params: {
+    id: string;
   };
 }
 
-// Static paths
 export async function generateStaticParams() {
   return dummyBlogs.map((blog) => ({
     id: blog.id,
   }));
 }
 
-// Page component
-export default function BlogDetailPage({ params }: Props) {
+// REMOVE THIS ⛔️
+// export async function generateMetadata({ params }: BlogParams): Promise<Metadata> { ... }
+
+export default function BlogDetailPage({ params }: BlogParams) {
   const blog = dummyBlogs.find((b) => b.id === params.id);
 
   if (!blog) return notFound();
