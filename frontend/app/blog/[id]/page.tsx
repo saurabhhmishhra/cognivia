@@ -2,11 +2,10 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { dummyBlogs } from "@/components/blog/blog-data";
 
-interface BlogParams {
-  params: {
-    id: string;
-  };
-}
+// ✅ Correct typing for App Router dynamic routes
+type PageProps = {
+  params: { id: string };
+};
 
 export async function generateStaticParams() {
   return dummyBlogs.map((blog) => ({
@@ -14,10 +13,7 @@ export async function generateStaticParams() {
   }));
 }
 
-// REMOVE THIS ⛔️
-// export async function generateMetadata({ params }: BlogParams): Promise<Metadata> { ... }
-
-export default function BlogDetailPage({ params }: BlogParams) {
+export default function BlogDetailPage({ params }: PageProps) {
   const blog = dummyBlogs.find((b) => b.id === params.id);
 
   if (!blog) return notFound();
