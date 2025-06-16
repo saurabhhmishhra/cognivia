@@ -1,20 +1,29 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { dummyBlogs } from "@/components/blog/blog-data";
+import { Metadata } from "next";
 
 type Props = {
-  params: {
-    id: string;
-  };
+  params: { id: string };
 };
 
-// Optional: for static generation (if using app router properly)
+// Optional: SEO metadata
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const blog = dummyBlogs.find((b) => b.id === params.id);
+  return {
+    title: blog?.title || "Blog Not Found",
+    description: blog?.summary || "Read blogs on mental health & wellness.",
+  };
+}
+
+// Static paths
 export async function generateStaticParams() {
   return dummyBlogs.map((blog) => ({
     id: blog.id,
   }));
 }
 
+// Page component
 export default function BlogDetailPage({ params }: Props) {
   const blog = dummyBlogs.find((b) => b.id === params.id);
 
