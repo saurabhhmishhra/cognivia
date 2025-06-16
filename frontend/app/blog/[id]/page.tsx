@@ -2,18 +2,17 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { dummyBlogs } from "@/components/blog/blog-data";
 
-// ✅ Correct typing for App Router dynamic routes
-type PageProps = {
-  params: { id: string };
-};
-
 export async function generateStaticParams() {
   return dummyBlogs.map((blog) => ({
     id: blog.id,
   }));
 }
 
-export default function BlogDetailPage({ params }: PageProps) {
+export default function BlogDetailPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const blog = dummyBlogs.find((b) => b.id === params.id);
 
   if (!blog) return notFound();
